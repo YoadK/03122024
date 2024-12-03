@@ -1,0 +1,21 @@
+{
+    "name": "nodejs-using-typescript",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "nodemon --exec ts-node src/app.ts --quiet"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.11.9"
+    },
+    "dependencies": {
+        "axios": "^1.7.8",
+        "js2xmlparser": "^5.0.0",
+        "update": "^0.7.4",
+        "vkbeautify": "^0.99.3",
+        "xml2js": "^0.6.2"
+    }
+}
