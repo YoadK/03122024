@@ -25,6 +25,7 @@ function convertDateGregToHeb(req, res) {
     const date = req.query.date; // for handling  the 1st url format (that format uses the "cfg,g2h,date,gs,strict" parameters)
 
     //checking for url format number 1: (https://www.hebcal.com/converter?cfg=json&date=2011-06-02&g2h=1&strict=1)
+    // using 'cfg', 'g2h','date', 'gs' and 'strict' parameters
     if (req.query.gy && req.query.gm && req.query.gd) {
         year = req.query.gy;
         month = req.query.gm;
