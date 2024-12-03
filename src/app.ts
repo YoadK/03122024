@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3000;
 app.use(express.json());
 
-//helper function
+//helper function for date validation
 function isDateValid(year: number, month: number, day: number): boolean {
     // Check if the date components create the exact date specified
     const date = moment([year, month - 1, day]);
@@ -49,8 +49,8 @@ function convertDateGregToHeb(req, res) {
         day = Number(dateParts[2]);
     }
 
-    // executed anyway:
-    if (!isDateValid(year,month,day))
+    // executed anyway:    
+    if (!isDateValid(+year,+month,+day))
         return res.status(400).json({ error: 'Given Date is not valid' });
 
     // checking that 'year', 'month' and 'day' are numbers
