@@ -1,7 +1,7 @@
-// imports
-const express = require('express');
-const axios = require('axios');
-const https = require('https');
+// imports for needed components
+const express = require('express'); //establish local server
+const axios = require('axios'); // http requests to rest apis
+const https = require('https'); // for ignoring sll certificate issue (could not solve it otherwise)
 import moment from 'moment';
 
 //setting an 'express' server on port 3000 for handling requests
