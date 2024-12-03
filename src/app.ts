@@ -10,9 +10,12 @@ const PORT = 3000;
 app.use(express.json());
 
 //helper function
-function isDateValid(dateStr: string): boolean {
-    const resultBool= moment(dateStr, 'YYY-MM-DD',true).isValid;
-    return resultBool;
+function isDateValid(year: number, month: number, day: number): boolean {
+    // Check if the date components create the exact date specified
+    const date = moment([year, month - 1, day]);
+    return date.year() === year && 
+           date.month() === month - 1 && 
+           date.date() === day;
 }
 
 
@@ -26,15 +29,14 @@ function convertDateGregToHeb(req, res) {
     console.log(`reqest is: `, req);
     console.log(`req.query.date is: `, req.query.date);
     console.log(`req.query is: `, req.query);
-
-    console.log(`-------------------------`);
-    console.log(`------------------------------`);
+   
 
     if (req.query.gy && req.query.gm && req.query.gd) {
         year = req.query.gy;
         month = req.query.gm;
         day = req.query.gd;
     }
+
     else if (req.query.date) {
         //checking that 'date' indeed exists
         if (!date) {
@@ -46,6 +48,10 @@ function convertDateGregToHeb(req, res) {
         month = Number(dateParts[1]);
         day = Number(dateParts[2]);
     }
+
+    // executed anyway:
+    if (!isDateValid(year,month,day))
+        return res.status(400).json({ error: 'Given Date is not valid' });
 
     // checking that 'year', 'month' and 'day' are numbers
     if (!year || !month || !day) {
